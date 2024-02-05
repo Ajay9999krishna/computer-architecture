@@ -1,0 +1,153 @@
+8 bit addition:-
+
+MVI C,00
+LDA 100
+MOV B,A
+LDA 101
+ADD B
+JNC skip
+INR C ; c=C+1
+skip: STA 102
+MOV A,C
+STA 103
+HLT
+
+8 bit subtraction:-
+
+MVI C,00
+LDA 100
+MOV B,A
+LDA 101
+SUB B
+JNC skip
+INR C 
+skip: STA 102
+MOV A,C
+STA 103
+HLT
+
+8bit multiplication:-
+
+LXI H,100
+MOV B,M 
+MVI A,00 
+MOV C,A 
+INX H 
+CONT: ADD M 
+JNC SKIP 
+INR C
+SKIP: DCR B
+JNZ CONT 
+STA 102
+MOV A,C
+STA 103
+HLT
+
+8bit division:-
+
+LXI H, 1001
+
+MOV B,M
+
+MVI C,00
+
+INX H
+
+loop: CMP B
+
+JC skip
+
+SUB B
+
+INR C
+
+JMP loop
+
+skip: STA 102
+
+MOV A, C
+
+STA 103
+
+HLT
+
+AND GATE:-
+
+MVI A, 06
+MVI B, 04
+ANA B
+STA 200
+ HLT
+
+OR GATE:-
+
+MVI A, 07
+MVI B, 06
+ORA B
+STA 200
+HLT
+
+XOR GATE:-
+
+MVI A, 03
+MVI B, 04
+XRA B
+STA 200
+HLT
+
+ROTATE RIGHT ACCUMULATOR:-
+
+6MVI A, 03
+RRC; Rotate Right Accumluator
+RRC
+RRC
+RRC
+STA 200
+HLT
+
+RIGHT LEFT ACCUMULATOR:-
+
+MVI A, 02
+RLC; Right Left Accumulator
+RLC
+RLC
+RLC
+STA 200
+HLT
+
+1's and 2's compliment:-
+
+
+LDA 200
+CMA
+STA 201
+ADI 01
+STA 202
+HLT
+
+Find larger Number
+
+MVI A, 66
+MVI B, 34
+CMP B
+JC LABEL_B
+JMP LABEL A
+LABEL A: STA 200
+JMP END
+LABEL B: MOV A, B
+STA 200
+END: HLT
+
+
+Finding smaller number:-
+
+MVI A, 66
+MVI B, 34
+CMP B
+JC LABEL A
+JMP LABEL_B
+LABEL A: STA 200
+JMP END
+LABEL B: MOV A,B
+STA 200
+END: HLT
